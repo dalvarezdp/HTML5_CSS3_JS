@@ -33,6 +33,11 @@ body {
     color: rgba(0, 0, 0, 0.92);
 }
 
+.navbar>.navbar-list>.navbar-item.active>.navbar-link {
+    color: #F7F7F7;
+    background-color: #A4A4A4;
+}
+
 .navbar>.navbar-list>.navbar-item>.navbar-link:hover {
     color: #F7F7F7;
     background-color: #A4A4A4;
