@@ -3,7 +3,7 @@ body {
     font-family: 'Roboto', sans-serif;
 }
 
-@@font-face {
+@font-face {
     font-family: batman;
     src: url("../fonts/batmfo__.ttf");
 }
