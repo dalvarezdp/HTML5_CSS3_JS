@@ -17,6 +17,7 @@ body {
     background-color: #F7F7F7;
     position: fixed;
     top: 0px;
+    z-index: 100;
 }
 
 .navbar>.navbar-list {
@@ -62,6 +63,9 @@ body {
     text-align: center;
     font-size: 100px;
     font-family: batman;
+    visibility: hidden;
+    animation: titleAnimation 2s forwards;
+    animation-delay: 0.5s;
 }
 
 .header>.title-img {
@@ -86,6 +90,9 @@ body {
     text-align: center;
     font-family: batman;
     font-size: 28px;
+    opacity: 0;
+    animation: subtitleAnimation 3s forwards;
+    animation-delay: 0.5s;
 }
 
 .about-me>.batman-video {
@@ -171,6 +178,31 @@ body {
 
 .flip:hover .back {
     transform: rotate(0);
+}
+
+@keyframes titleAnimation {
+    0% {
+        font-size: 200px;
+    }
+    50% {
+        font-size: 180px;
+    }
+    100% {
+        font-size: 100px;
+        visibility: visible;
+    }
+}
+
+@keyframes subtitleAnimation {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 0.6;
+    }
+    100% {
+        opacity: 1;
+    }
 }
 
 .clearfix:after {
