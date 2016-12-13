@@ -1,23 +1,32 @@
-function	launchFullscreen()	{
-		if(document.requestFullscreen)	{
-				document.requestFullscreen();
-		}	else	if(document.mozRequestFullScreen)	{
-				document.mozRequestFullScreen();
-		}	else	if(document.webkitRequestFullscreen)	{
-				document.webkitRequestFullscreen();
-		}	else	if(document.msRequestFullscreen)	{
-				document.msRequestFullscreen();
-		}
+document.querySelector("video-batman").addEventListener("click" , function(event) {
+	launchFullScreen(this);
+	this.play();
+});
+
+document.getElementById("video-batman").addEventListener("ended", function(event){
+    exitFullScreen();
+});
+
+function launchFullScreen(element) {
+	if (element.requesFullScreen) {
+		element.requesFullScreen();
+	} else if (element.mozRequestFullScreen) {
+		element.mozRequestFullScreen();
+	} else if (element.webkitRequestFullscreen) {
+		element.webkitRequestFullscreen();
+	} else if (element.msRequestFullscreen) {
+		element.msRequestFullscreen();
+	}
 }
 
-function	exitFullscreen()	{
-		if(document.exitFullscreen)	{
-				document.exitFullscreen();
-		}	else	if(document.mozCancelFullScreen)	{
-				document.mozCancelFullScreen();
-		}	else	if(document.webkitExitFullscreen)	{
-				document.webkitExitFullscreen();
-		}	else	if(document.msExitFullscreen)	{
-				document.msExitFullscreen();
-		}
+function exitFullScreen() {
+	if (document.exitFullScreen) {
+		document.exitFullScreen();
+	} else if (document.mozCancelFullScreen) {
+		document.mozCancelFullScreen();
+	} else if (document.webkitExitFullscreen) {
+		document.webkitExitFullscreen();
+	} else if(document.msExitFullscreen) {
+		document.msExitFullscreen();
+	}
 }
