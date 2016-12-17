@@ -3,6 +3,7 @@ $(document).ready(function() {
   var tasks = [];
   var newTaskInput = $('#newTaskName');
   var tasksContainer = $('#tasksContainer');
+  var loader = $('.loader');
 
   var drawTasks = function () {
     tasksContainer.empty();
@@ -52,7 +53,7 @@ $(document).ready(function() {
     }
 
     var complete = function (object, textStatus) {
-      console.log(object, textStatus);
+      loader.hide();
       if (textStatus == 'error') {
         console.log("Ha habido un error, revísalo.");
       }else {
@@ -60,12 +61,18 @@ $(document).ready(function() {
       }
     }
 
+    var beforeSend = function () {
+      console.log("Antes de que se envíe.");
+      loader.show();
+    }
+
     $.ajax({
       type: "GET",
       url: API_URL + "tasks",
       success: success,
       error: error,
-      complete: complete
+      complete: complete,
+      beforeSend: beforeSend
     });
   }
 
@@ -101,7 +108,10 @@ $(document).ready(function() {
     deleteTask(id);
   });
 
-  getTasks();
-  //drawTasks();
+
+  setTimeout(function () {
+    getTasks();
+  }, 2000);
+
 
 });
