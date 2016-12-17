@@ -35,6 +35,9 @@ $(document).ready(function() {
       url: API_URL + "tasks",
       data: data,
       success: success
+    })
+    .fail(function (error) {
+      console.log("Error creando tarea. ", error);
     });
   }
 
@@ -44,10 +47,15 @@ $(document).ready(function() {
       drawTasks();
     };
 
+    var error = function (error) {
+      console.log("Error cargando tareas. ", error);
+    }
+
     $.ajax({
       type: "GET",
       url: API_URL + "tasks",
-      success: success
+      success: success,
+      error: error
     });
   }
 
@@ -63,6 +71,8 @@ $(document).ready(function() {
       type: "DELETE",
       url: API_URL + "tasks/" + id,
       success: success
+    }).fail(function (error) {
+      console.log("Error eliminando tarea. ", error);
     });
   }
 
