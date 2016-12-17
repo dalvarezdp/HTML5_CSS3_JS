@@ -51,28 +51,40 @@ $(document).ready(function() {
       console.log("Error cargando tareas. ", error);
     }
 
+    var complete = function (object, textStatus) {
+      console.log(object, textStatus);
+      if (textStatus == 'error') {
+        console.log("Ha habido un error, revísalo.");
+      }else {
+        console.log("Todo ha ido de forma correcta.");
+      }
+    }
+
     $.ajax({
       type: "GET",
       url: API_URL + "tasks",
       success: success,
-      error: error
+      error: error,
+      complete: complete
     });
   }
 
   var deleteTask = function (id) {
-    var success = function (data) {
+    $.ajax({
+      type: "DELETE",
+      url: API_URL + "tasks/" + id
+    })
+    .done(function (data) {
       tasks = $.grep(tasks, function (item) {
         return item.id != id;
       })
       drawTasks();
-    };
-
-    $.ajax({
-      type: "DELETE",
-      url: API_URL + "tasks/" + id,
-      success: success
-    }).fail(function (error) {
+    })
+    .fail(function (error) {
       console.log("Error eliminando tarea. ", error);
+    })
+    .always(function (object, status, error) {
+      console.log(object, status, error);
     });
   }
 
